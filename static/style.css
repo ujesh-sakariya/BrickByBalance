@@ -35,7 +35,7 @@ p{
 }
   
 .toolbar{
-  background-color: #28033c;
+  /*background-color: #28033c;*/
   color: white;
   font-family: "Coco";
   padding: 10px;
@@ -52,7 +52,7 @@ p{
 
 .navbar {
   overflow: hidden;
-  background-color: #28033c; /* Change to your desired color */
+  /*background-color: #28033c;  Change to your desired color */
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -72,12 +72,20 @@ p{
   background-color: #28033c;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 #main-menu{
+  flex: 1;
   background-size: cover;
   background-position: center;
-  background-color: #28033c;
   color: white; /* Set text color to white or your desired color */
-  padding: 100px 0; /* Adjust the padding as needed */
+  padding: 20px 0; /* Adjust the padding as needed */
+  /*margin-left: -300px;
+  margin-top: -300px;*/
 }
 
 .header-text {
@@ -91,6 +99,7 @@ p{
   letter-spacing: 1px;
   max-width: 1000px;
   margin-bottom: 10px;
+  /*margin-left: -150px;*/
 }
 
 .header-text h2 {
@@ -98,10 +107,192 @@ p{
   line-height: 1;
   color: white;
   font-family: "Coco";
+  /*margin-left: -150px;*/
 }
 
 .header-text p {
   font-size: 16px;
   line-height: 1;
   margin-bottom: 20px;
+  /*margin-left: -150px;*/
 }
+
+
+/*FORMS FOR LOGIN AND REGISTER PAGE*/
+.login-title {
+  align-items: center;
+  margin-bottom: 50px;
+  }
+  
+  form {
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    font-family: "Vogue";
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    width: 200px;
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-family: "Jumper";
+  }
+  
+  input{
+    font-family: "Vogue";
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-primary:hover {
+    background-color: black;
+  }
+  
+  /*EXISTING TOURNAMENTS PAGE*/
+  .container-tournament{
+    width: 100%; 
+    margin: 0 auto;
+    padding-top: 20px;
+    min-height: calc(100vh - 120px);
+  }
+  
+  .form-container h1 {
+    margin-bottom: 40px;
+    width: 80%;
+  }
+  .form-container{
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .result-container{
+    text-align: center;
+    margin: 20px auto;
+    width: 50%;
+  }
+
+/*PYRAMID
+*, *::before, *::after {
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+body {
+background-color: #000;
+color: #fff;
+min-height: 100vh;
+display: grid;
+place-items: center;
+perspective: 800px;
+margin-top: -100px;
+
+
+*:not(:empty) {
+  transform-style: preserve-3d;
+}
+}
+
+.scene {
+position: relative;
+animation: sceneRotate 60s infinite linear;
+}
+
+@keyframes sceneRotate {
+from { transform: translateY(10em) rotateX(-15deg) rotateY(0deg); }
+to { transform: translateY(10em) rotateX(-15deg) rotateY(-360deg); }
+}
+
+.floor {
+position: absolute;
+inset: -60em;
+background-image:
+  radial-gradient(closest-side, transparent, #000),
+  repeating-radial-gradient(circle at calc(cos(0deg) * 25% + 50%) calc(sin(0deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+  repeating-radial-gradient(circle at calc(cos(72deg) * 25% + 50%) calc(sin(72deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+  repeating-radial-gradient(circle at calc(cos(144deg) * 25% + 50%) calc(sin(144deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+  repeating-radial-gradient(circle at calc(cos(216deg) * 25% + 50%) calc(sin(216deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+  repeating-radial-gradient(circle at calc(cos(288deg) * 25% + 50%) calc(sin(288deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em);
+transform: rotateX(90deg);
+}
+
+.pyramid {
+position: absolute;
+
+--bricks:
+  linear-gradient(155deg, brown 0.375em, transparent 0.375em) 0.625em 0.125em / 1em 1em,
+  linear-gradient(155deg, brown 0.375em, transparent 0.375em) 0.125em 0.625em / 1em 1em,
+  linear-gradient(335deg, maroon 0.375em, transparent 0.375em) 0 0.025em / 1em 1em,
+  linear-gradient(335deg, maroon 0.375em, transparent 0.375em) 0.5em 0.525em / 1em 1em;
+
+div {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(10deg, #0007, #fff3), var(--bricks);
+  background-color: sandybrown;
+  transform-origin: bottom;
+  
+  &:nth-child(2) { --angle: 90deg; }
+  &:nth-child(3) { --angle: 180deg; }
+  &:nth-child(4) { --angle: 270deg; }
+}
+
+&.top {
+  transform: translateY(-10em);
+  animation: topRotate 50s infinite linear;
+
+  div {
+    left: -4.5em;
+    width: 9em;
+    aspect-ratio: 1;
+    transform: rotateY(var(--angle, 0)) translateZ(4.5em) rotateX(30deg);
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+}
+
+&.bottom {
+  div {
+    left: -10em;
+    width: 20em;
+    aspect-ratio: 2 / 1;
+    transform: rotateY(var(--angle, 0)) translateZ(10em) rotateX(30deg);
+    clip-path: polygon(0 100%, 25% 0, 75% 0, 100% 100%); 
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -5em;
+    background: radial-gradient(#000a, 75%, #fff3), var(--bricks);
+    background-color: sandybrown;
+    transform: rotateX(90deg) translateZ(8.66em);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -11em;
+    background-color: #0009;
+    transform: rotateX(90deg) translateZ(1px);
+    filter: blur(1em)
+  }
+}
+}
+
+@keyframes topRotate {
+from { transform: translateY(-10em) rotateY(0deg); }
+to { transform: translateY(-10em) rotateY(-360deg); }
+}
+*/
+
