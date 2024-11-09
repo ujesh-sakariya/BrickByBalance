@@ -6,13 +6,18 @@ a {
 }
 
 @font-face {
-  font-family: Stretch;
+  font-family: StretchPro;
   src: url(../static/StretchPro.otf) format("opentype");
+}
+
+@font-face {
+  font-family: Coco;
+  src: url(../static/Cocogoose-Pro-Bold-trial.ttf) format("opentype");
 }
 
 h1 {
   font-size: 40px;
-  font-family: "Stretch";
+  font-family: "StretchPro";
   width: fit-content;
   color: #FF6B01;
   line-height: 1;
@@ -32,13 +37,14 @@ p{
 .toolbar{
   background-color: #28033c;
   color: white;
+  font-family: "Coco";
   padding: 10px;
   display: flex;
   align-items: center;
 }
 
 .logo img{
-  max-width: 60%;
+  max-width: 100%;
   height: auto; 
   display: block;
   margin-left: 0;
@@ -50,15 +56,15 @@ p{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 80%;  
+  width: 90%;  
   margin-right: 10px;
 }
   
 .navbar a {
-  font-size: 14px;
+  font-size: 16px;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 16px 20px;
   text-decoration: none;
 }
   
@@ -75,21 +81,23 @@ p{
 }
 
 .header-text {
-  max-width: 650px; /* Set the maximum width of the text content */
+  max-width: 800px; /* Set the maximum width of the text content */
   margin-left: 10px;
 }
 
 .header-text h1 {
-  font-size: 26px;
-  font-family: "Stretch";
+  font-size: 47px;
+  font-family: "StretchPro";
   letter-spacing: 1px;
-  max-width: 800px;
+  max-width: 1000px;
+  margin-bottom: 10px;
 }
 
 .header-text h2 {
   font-size: 36px;
   line-height: 1;
   color: white;
+  font-family: "Coco";
 }
 
 .header-text p {
