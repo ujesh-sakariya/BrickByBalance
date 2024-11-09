@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block main %}
-<div id="main-content" class="flex-container">
-    <!-- Left Side: Main Menu Content -->
     <div id="main-menu" style="background-image:url(../static/background.jpg);">
         <div class="container">
             <div class="row">
@@ -20,30 +18,24 @@
         </div>
     </div>
 
-    <!-- Right Side: Pyramid Scene 
-    <div class="scene">
-        <div class="floor"></div>
-        <div class="pyramid bottom">
-            <div></div><div></div><div></div><div></div>
-        </div>
-        <div class="pyramid top">
-            <div></div><div></div><div></div><div></div>
-        </div>
-    </div>
-</div>
--->
-
 <!-- Section for registration / login -->
-{% if not user %}
-<div class="content-block" id="registration-section" style="background-image: url(../static/images/bg1.png);">
+<div class="content-block" id="registration-section">
   <h1>REGISTRATION</h1>
-  <p>Discover the power of Tour-Ment, your all-in-one tournament organization tool. Manage all your tournaments in one place whatever their structures and matches formats. Decide how players participate in your tournaments. Showcase your tournament activities through a dedicated site, Tour-Ment makes it all possible.</p>
+  <p>We help aspiring homeowners build the financial confidence they need to achieve their dreams of owning a home. In this section, you can either log in if you're an existing member or sign up to join our community and gain access to personalized financial insights, tailored savings plans, and exclusive resources. Let’s get started, so you can start building your path to homeownership!</p>
   <div class="buttons-registration">
   <a href="/sign-up" id="signup-button">SIGN UP</a>
   <a href="/login" id="login-button">LOGIN</a>
   </div>
 </div>
-{% endif %} 
+
+<!--Section for Mortgage Calculator-->
+<div class="content-block" id="mortgage-section">
+  <h1>MORTGAGE CALCULATOR</h1>
+  <p>Our Mortgage Calculator is here to help you make informed decisions about your home loan options. Whether you're exploring your first mortgage or assessing different financing options, this tool provides a clear estimate of your monthly payments, loan terms, and interest over time.</p>
+  <div class="buttons-registration">
+  <a href="/mortgageCalculator.html" id="mortgage-button">MORTGAGE CALCULATOR</a>
+  </div>
+</div>
 
 
 

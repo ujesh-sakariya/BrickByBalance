@@ -35,7 +35,7 @@ p{
 }
   
 .toolbar{
-  /*background-color: #28033c;*/
+  background-color: #28033c;
   color: white;
   font-family: "Coco";
   padding: 10px;
@@ -52,7 +52,7 @@ p{
 
 .navbar {
   overflow: hidden;
-  /*background-color: #28033c;  Change to your desired color */
+  background-color: #28033c;  /*Change to your desired color */
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -72,20 +72,12 @@ p{
   background-color: #28033c;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 #main-menu{
-  flex: 1;
   background-size: cover;
   background-position: center;
   color: white; /* Set text color to white or your desired color */
   padding: 20px 0; /* Adjust the padding as needed */
-  /*margin-left: -300px;
-  margin-top: -300px;*/
+
 }
 
 .header-text {
@@ -114,9 +106,67 @@ p{
   font-size: 16px;
   line-height: 1;
   margin-bottom: 20px;
+  color: white;
   /*margin-left: -150px;*/
 }
 
+#registration-section {
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 50px 20px; /* Adjust padding as needed */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -60px;
+}
+
+#registration-section, #mortgage-section h1 {
+  font-size: 40px;
+  text-align: center;
+  color: #FF6B01;
+}
+
+#registration-section p {
+  font-size: 18px;
+  margin: 20px 10; /* Add margin below the paragraph */
+  max-width: 800px; /* Set the maximum width of the text content */
+  margin-top: 40px;
+}
+
+#signup-button, #login-button, .btn-primary, #mortgage-button {
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  flex-direction: row;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: #FF6B01; /* Choose a button color */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: "Coco";
+}
+
+#signup-button:hover, #login-button:hover, #mortgage-button:hover {
+  background-color: #000000; /* Adjust hover color */
+}
+
+#mortgage-section {
+  text-align: center;
+  padding: 50px 0; /* Adjust padding as needed */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#mortgage-section p {
+  font-size: 18px;
+  margin: 20px 10; /* Add margin below the paragraph */
+  max-width: 800px; /* Set the maximum width of the text content */
+  margin-top: 40px;
+}
 
 /*FORMS FOR LOGIN AND REGISTER PAGE*/
 .login-title {
@@ -160,29 +210,7 @@ p{
   .btn-primary:hover {
     background-color: black;
   }
-  
-  /*EXISTING TOURNAMENTS PAGE*/
-  .container-tournament{
-    width: 100%; 
-    margin: 0 auto;
-    padding-top: 20px;
-    min-height: calc(100vh - 120px);
-  }
-  
-  .form-container h1 {
-    margin-bottom: 40px;
-    width: 80%;
-  }
-  .form-container{
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .result-container{
-    text-align: center;
-    margin: 20px auto;
-    width: 50%;
-  }
+
 
 /*PYRAMID
 *, *::before, *::after {
