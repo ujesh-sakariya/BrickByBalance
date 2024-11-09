@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mortgage Calculator</title>
-</head>
+{% extends "layout.html" %}
 
-<body>
+{% block title %}
+Mortgage Calculator
+{% endblock %}
+
+{%block main %}
     <header>
-        <h1>Brick By Balance</h1>
         <h2>Your personalised Mortage Calculator</h2>
     </header>
 
@@ -37,4 +34,4 @@
             <button type="button" onclick="calculateMortgage()">Calculate My Mortgage</button>
         </form>
     </div>
-</body>
+{% endblock %}
