@@ -10,3 +10,4 @@ app.secret_key = secrets.token_hex(16)
 def index():
     return render_template("homepage.html")
     # hello
+    print('yes')
