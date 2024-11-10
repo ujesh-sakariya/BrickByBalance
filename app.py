@@ -110,6 +110,8 @@ def prediction():
     if request.method == 'POST':
         houseType = request.form.get('houseType')
         years = request.get.form('years')
+        savings = request.get.form('savings')
+        
     else:
         return render_template('prediction.html')
 
