@@ -104,3 +104,5 @@ def register():
 def logout():
     session.clear()
     return render_template('homepage.html')
+
+
