@@ -5,21 +5,20 @@ Mortgage Calculator
 {% endblock %}
 
 {%block main %}
-    <header>
-        <h2>Your personalised Mortage Calculator</h2>
-    </header>
 
     <div class="calculator">
-        <h2>Mortage Calculator</h2>
+        <h1>MORTGAGE CALCULATOR</h1>
 
+        </br>
+        </br>
         <form id="mortageForm">
-            <label for="loanAmount">Property Price (£):</label>
+            <label for="loanAmount">PROPERTY PRICE (£):</label>
             <input type="number" id="loanAmount" name="loanAmount" required placeholder="Enter the property price">
 
-            <label for="downPayment">Down Payment (£):</label>
+            <label for="downPayment">DOWN PAYMENT (£):</label>
             <input type="number" id="downPayment" name="downPayment" required placeholder="Enter your down payment">
 
-            <label for="loanTerm">Loan Term (Years):</label>
+            <label for="loanTerm">LOAN TERM (YEARS):</label>
             <select id="loanTerm" name="loanTerm" required>
                 <option value="10">10 Years</option>
                 <option value="15">15 Years</option>
@@ -28,10 +27,16 @@ Mortgage Calculator
                 <option value="30">30 Years</option>
             </select>
 
-            <label for="interestRate">Annual Interest Rate (%):</label>
+            <label for="interestRate">ANNUAL INTEREST RATE (PERCENTAGE):</label>
             <input type="number" id="interestRate" name="interestRate" step="0.01" required placeholder="Enter interest rate">
 
-            <button type="button" onclick="calculateMortgage()">Calculate My Mortgage</button>
+            <label for="monthlySavings">MONTHLY SAVINGS (£):</label>
+            <input type="number" id="monthlySavings" name="monthlySavings" step="0.01" required placeholder="Enter your monthly savings">        
+
+            <button type="button" onclick="calculateMortgage()">CALCULATE MY MORTGAGE</button>
         </form>
+
+        <div id="mortgageResult"></div>
+        <canvas id="mortgageChart" width="400" height="200"></canvas>
     </div>
 {% endblock %}

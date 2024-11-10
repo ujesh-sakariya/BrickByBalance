@@ -142,7 +142,28 @@ p{
   color: black;
 }
 
-#signup-button, #login-button, .btn-primary, #mortgage-button {
+button[type="submit"] {
+  font-size: 16px;
+  text-decoration: none;
+  flex-direction: row;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: #FF6B01; /* Choose a button color */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: "Coco";
+}
+
+.buttons-registration {
+  display: flex; /* Use flexbox to align the buttons horizontally */
+  justify-content: center; /* Center-aligns the buttons */
+}
+
+.buttons-registration form {
+  display: inline-block; /* Ensures each form wraps the button without expanding */
+}
+
+.btn-primary, #mortgage-button {
   display: inline-block;
   font-size: 16px;
   text-decoration: none;
@@ -251,13 +272,13 @@ p{
   }
   
   form {
-    width: 500px;
+    width: 800px;
     margin: 0 auto;
   }
   
   .form-group {
     margin-bottom: 20px;
-    font-family: "Vogue";
+    font-family: "Coco";
     text-align: left;
     display: flex;
     align-items: center;
@@ -268,11 +289,11 @@ p{
     display: block;
     margin-bottom: 5px;
     margin-right: 5px;
-    font-family: "Jumper";
+    font-family: "Coco";
   }
   
   input{
-    font-family: "Vogue";
+    font-family: "Coco";
   }
   
   .form-control {
