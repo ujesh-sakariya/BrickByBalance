@@ -41,8 +41,6 @@ def login():
         # Obtains the username and password from the data that is posted
         username = request.form.get('username')      
         password = request.form.get('password')
-        print(username)
-        print(password)
 
         # Query to check if an account exists with the given username and password
         query = "SELECT username, password, email FROM accounts WHERE username = ? AND password = ?"
@@ -63,3 +61,41 @@ def login():
     else:
         # direct user to the login page 
         return render_template('login.html')
+
+# handle routes for registraton
+@app.route("/register", methods=["GET","POST"])
+def register():
+
+    if request.method =="POST":
+
+        #get the data from register
+        username = request.form.get('username')      
+        password = request.form.get('password')
+        email = request.form.get('email')
+        data = [username]
+
+        #check if an account exists with the given username 
+        query = "SELECT username FROM accounts WHERE username = ?"
+        connection = getConnection()
+        cursor = connection.cursor()
+        cursor.execute(query,(data))
+        status = cursor.fetchone()
+        if status != None:
+            # Output error message 
+            return render_template('register.html', fail = 'username is already taken')
+
+        # set the session to the current user 
+        session["name"] = username
+        
+        add_accounts = "INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)"
+        data_accounts = (username,password,email)
+        #inserting data 
+        cursor.execute(add_accounts, data_accounts)
+        #commit to db
+        connection.commit()
+        removeConnection(connection)
+        return render_template('homepage.html')
+    else:
+        # GET METHOD
+        return render_template('register.html')
+
