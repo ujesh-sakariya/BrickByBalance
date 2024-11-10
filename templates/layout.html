@@ -14,14 +14,14 @@
                 <div class="navbar">
                 <img src ="{{url_for('static',filename='logo.png')}}" width ='40' height = '30' alt="">
             {% if session.name %}
-            <a id="" href="/mortgageCalculator">MORTGAGE CALCULATOR</a>
-            <a id="" href="/logout">LOGOUT</a>
+                <a id="" href="/mortgageCalculator">MORTGAGE CALCULATOR</a>
+                <a id="" href="/logout">LOGOUT</a>
             {% else %}
                     <a id="" href="/">HOME</a>
                     <a id="" href="/login">LOGIN</a>
                     <a id="" href="/register">REGISTER</a>
-                </div>
             {% endif %}
+             </div>
             </div>
         </div>
         {%block main %} {% endblock %}
