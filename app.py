@@ -4,7 +4,8 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import secrets
 app = Flask(__name__)
 
-import threading
+# get the AI model
+from price_prediction import predict
 
 
 app.secret_key = secrets.token_hex(16)
@@ -134,6 +135,8 @@ def prediction():
         monthlyIncome = request.get.form('monthlyIncome')
         deposit = request.get.form('deposit')
 
+        # create the function to calcualte the predicted price 
+        cost = predict(houseType,years,region)
         
 
         query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
