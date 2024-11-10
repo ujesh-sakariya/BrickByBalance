@@ -111,7 +111,7 @@ def prediction():
         houseType = request.form.get('houseType')
         years = request.get.form('years')
         savings = request.get.form('savings')
-        
+        region = request.get.form('region')
     else:
         return render_template('prediction.html')
 
