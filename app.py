@@ -57,6 +57,16 @@ def login():
             # set the session to the current user 
             session["name"] = username
             removeConnection(connection)
+
+            # store the id 
+            query = 'SELECT id FROM accounts WHERE username = ?'
+            connection = getConnection()
+            cursor = connection.cursor()
+            cursor.execute(query,(username,))
+            id = cursor.fetchall()[0][0] 
+            session['id'] = id
+            removeConnection(connection)
+
             return render_template("homepage.html")
     else:
         # direct user to the login page 
@@ -78,7 +88,7 @@ def register():
         query = "SELECT username FROM accounts WHERE username = ?"
         connection = getConnection()
         cursor = connection.cursor()
-        cursor.execute(query,(data))
+        cursor.execute(query,(data,))
         status = cursor.fetchone()
         if status != None:
             # Output error message 
@@ -94,6 +104,16 @@ def register():
         #commit to db
         connection.commit()
         removeConnection(connection)
+
+        # store the id in sessions
+        query = 'SELECT id FROM accounts WHERE username = ?'
+        connection = getConnection()
+        cursor = connection.cursor()
+        cursor.execute(query,(username,))
+        id = cursor.fetchall()[0][0] 
+        session['id'] = id
+        removeConnection(connection)
+
         return render_template('homepage.html')
     else:
         # GET METHOD
@@ -112,8 +132,36 @@ def prediction():
         years = request.get.form('years')
         savings = request.get.form('savings')
         region = request.get.form('region')
+        monthlyIncome = request.get.form('monthlyIncome')
+        deposit = request.get.form('deposit')
+
+        query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
+        connection = getConnection()
+        cursor = connection.cursor()
+        account_id = session['id']
+        cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
+        connection.commit()
+        removeConnection(connection)
+        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit)
     else:
         return render_template('prediction.html')
+    
+@app.route('/History')
+def history():
+    # get the history for the user 
+    id = session['id']
+    query = ('SELECT houseType, years, savings, region, monthlyIncome, deposit FROM Houses WHERE account_id = ?')
+    connection = getConnection()
+    cursor = connection.cursor()
+    cursor.execute(query,(id,))
+    data = cursor.fethcall()
+
+    data.reverse()
+
+    return render_template('history.html',data = data)
+
+
+
 
 
 
