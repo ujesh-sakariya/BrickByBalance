@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container">
+    <h1>Your Prediction History</h1>
+    <p>Here you can see all the predictions you have made in the past.</p>
+
+=    <div class="history-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>House Type</th>
+                    <th>Years Until Deposit</th>
+                    <th>Deposit Percentage</th>
+                    <th>Monthly Income</th>
+                    <th>Savings</th>
+                    <th>Region</th>
+                    <th>Deposit Goal</th>
+                    <th>Loan Amount</th>
+                    <th>Estimated Monthly Payment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in data %}
+                <tr>
+                    <td>{{ record.houseType }}</td>
+                    <td>{{ record.years }}</td>
+                    <td>{{ record.deposit }}</td>
+                    <td>£{{ record.monthlyIncome }}</td>
+                    <td>£{{ record.savings }}</td>
+                    <td>{{ record.region }}</td>
+                    <td>£{{ record.deposit_amount }}</td>
+                    <td>£{{ record.loan_amount }}</td>
+                    <td>£{{ record.monthly_payment|round(2) }}</td>
+                    <td>
+                        <a href="/view_prediction/{{ record.id }}" class="btn btn-info">View Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="buttons">
+        <a href="/prediction" class="btn btn-primary">Make Another Prediction</a>
+    </div>
+</div>
+
+{% endblock %}
