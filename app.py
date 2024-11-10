@@ -131,11 +131,11 @@ def logout():
 def prediction():
     if request.method == 'POST':
         houseType = request.form.get('houseType')
-        years = request.get.form('years')
-        savings = request.get.form('savings')
-        region = request.get.form('region')
-        monthlyIncome = request.get.form('monthlyIncome')
-        deposit = int(request.get.form('deposit'))
+        years = int(request.form.get('years'))
+        savings = request.form.get('savings')
+        region = request.form.get('region')
+        monthlyIncome = request.form.get('monthlyIncome')
+        deposit = int(request.form.get('deposit'))
 
         # create the function to calcualte the predicted price 
         cost = predict(houseType,years,region)
