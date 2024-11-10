@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container">
+    <h1>Prediction Results</h1>
+    <p>Here are the results based on the information you provided:</p>
+
+    <!-- Result Container -->
+    <div class="result-container">
+        <h2>YOUR PREDICTION RESULTS</h2>
+        <ul>
+            <li>House Type: {{ houseType }}</li>
+            <li>Years Until Deposit is Put Down: {{ years }} years</li>
+            <li>Deposit Percentage: {{ deposit }}</li>
+            <li>Monthly Income: £{{ monthlyIncome }}</li>
+            <li>Savings: £{{ savings }}</li>
+            <li>Region: {{ region }}</li>
+            <li>Estimated House Price: £{{ house_price }}</li>
+        </ul>
+    </div>
+
+    <div class="buttons">
+        <a href="/prediction" class="btn btn-primary">Make Another Prediction</a>
+        <a href="/History" class="btn btn-secondary">View Prediction History</a>
+    </div>
+</div>
+
+<div class="result-container">
+    <h2>YOUR SAVING PLAN</h2>
+</div>
+
+
+{% endblock %}

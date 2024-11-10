@@ -163,7 +163,7 @@ button[type="submit"] {
   display: inline-block; /* Ensures each form wraps the button without expanding */
 }
 
-.btn-primary, #mortgage-button {
+.btn-primary, #mortgage-button, .btn-primary, .btn-secondary {
   display: inline-block;
   font-size: 16px;
   text-decoration: none;
@@ -304,10 +304,58 @@ button[type="submit"] {
     border: 1px solid #ccc;
   }
   
-  .btn-primary:hover {
+  .btn-primary:hover, .btn-secondary:hover {
     background-color: black;
   }
 
+
+  .result-container h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.result-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.result-container li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.result-container li strong {
+    color: #333;
+}
+
+.result-container p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.history-container table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+.history-container th, .history-container td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.history-container th {
+  background-color: #f4f4f4;
+}
+
+.history-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.history-container tr:hover {
+  background-color: #e9e9e9;
+}
 
 /*PYRAMID
 *, *::before, *::after {

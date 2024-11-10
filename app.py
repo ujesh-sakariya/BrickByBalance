@@ -27,8 +27,7 @@ def index():
     return render_template("homepage.html")
 
 # handles the mortgage calculator route 
-def mortgageCalculator():
-
+def mortgageCalculator():   
     if request.method == 'GET':
         # return the page 
         return render_template('mortgageCalculator.html')
