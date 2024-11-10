@@ -40,8 +40,8 @@ def predict(house_type: str, year_range: int,region_in:str = '') -> float:
     future_df = pd.DataFrame({'ds': future_date})
 
     # Add regressor values (these should be adjusted based on expectations)
-    future_df['Interest'] = 2.0  # Replace with your expected value for Interest
-    future_df['Inflation'] = 1.5  # Replace with your expected value for Inflation
+    future_df['Interest'] = 2.5  # Replace with your expected value for Interest
+    future_df['Inflation'] = 2.0  # Replace with your expected value for Inflation
     #handle region input
     regions = {'Wales':0, 
                'Inner London':0, 
