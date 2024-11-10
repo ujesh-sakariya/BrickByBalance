@@ -134,6 +134,8 @@ def prediction():
         monthlyIncome = request.get.form('monthlyIncome')
         deposit = request.get.form('deposit')
 
+        
+
         query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
         connection = getConnection()
         cursor = connection.cursor()
