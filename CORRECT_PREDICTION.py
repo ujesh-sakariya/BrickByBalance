@@ -46,7 +46,7 @@ def complex_amount_per_month_to_save(savings, interest_rate, value, days_to_save
     while value > predicted_saving_amount and planned_saving_per_month < 1E7:
         planned_saving_per_month += 10
         predicted_saving_amount = result_of_savings_complex(savings, planned_saving_per_month, interest_rate, days_to_save)
-    return planned_saving_per_month if planned_saving_per_month < 1E7 else False
+    return planned_saving_per_month if planned_saving_per_month < 1E7 else False, 0, planned_saving_per_month
 
 def complex_time_to_save(savings, save_per_month, interest_rate, value):
     predicted_saving_amount = 0
@@ -72,7 +72,6 @@ def result_of_savings_isa(savings, save_per_month, interest_rate, days_to_save):
             from_additional_saving += save_per_month * (daily_interest ** (days_to_save - i * 30))
             if save_per_month < isa_limit:
                 isa_limit -= save_per_month
-                #
                 isa_cont += save_per_month
                 from_lifetime_isa += save_per_month * 0.25 * (daily_interest ** (days_to_save - i * 30))
             else:
@@ -85,17 +84,19 @@ def result_of_savings_isa(savings, save_per_month, interest_rate, days_to_save):
             i += 1
         monthlyIndex = index_cont // number_of_additional_savings
         monthlyIsa = isa_cont // number_of_additional_savings
-    return default_amount + from_additional_saving + from_lifetime_isa
+    return default_amount + from_additional_saving + from_lifetime_isa, monthlyIsa, monthlyIndex
 
 def isa_amount_per_month_to_save(savings, interest_rate, value, days_to_save):
     if value >= 450000:
         return complex_amount_per_month_to_save(savings, interest_rate, value, days_to_save)
     predicted_saving_amount = 0
     planned_saving_per_month = 0
+    monthlyIsaCont = 0
+    monthlyIndexCont = 0
     while value > predicted_saving_amount and planned_saving_per_month < 1E7:
         planned_saving_per_month += 10
-        predicted_saving_amount = result_of_savings_isa(savings, planned_saving_per_month, interest_rate, days_to_save)
-    return planned_saving_per_month if planned_saving_per_month < 1E7 else False
+        predicted_saving_amount, monthlyIsaCont, monthlyIndexCont = result_of_savings_isa(savings, planned_saving_per_month, interest_rate, days_to_save)
+    return planned_saving_per_month if planned_saving_per_month < 1E7 else False, monthlyIsaCont, monthlyIndexCont
 
 def isa_time_to_save(savings, save_per_month, interest_rate, value):
     if value >= 450000:
@@ -137,11 +138,11 @@ def get_contribution(savings, is_snp, is_isa, years_to_save, value):
     isa_amount_per_month = 0
     index_per_month = 0
     if is_isa:
-        amount_per_month = isa_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
+        amount_per_month, isa_amount_per_month, index_per_month = isa_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
     else:
-        amount_per_month = complex_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
+        amount_per_month, isa_amount_per_month, index_per_month = complex_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
 
-    return amount_per_month, 0, 0
+    return amount_per_month, isa_amount_per_month, index_per_month
 
 #predicts savings
 def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
@@ -152,3 +153,5 @@ def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
     else:
         final_savings = result_of_savings_complex(savings, amount_per_month, interest, years_to_save * 365)
     return final_savings
+
+print(get_contribution(1000, False, False, 1, 20000))
