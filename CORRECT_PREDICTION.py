@@ -34,7 +34,7 @@ def result_of_savings_complex(savings, save_per_month, interest_rate, days_to_sa
     default_amount = savings * (daily_interest ** days_to_save)
     from_additional_saving = 0
 
-    number_of_additional_savings = days_to_save // 30
+    number_of_additional_savings = int(days_to_save // 30)
     if number_of_additional_savings >= 1:
         for i in range(1, number_of_additional_savings + 1):
             from_additional_saving += save_per_month * (daily_interest ** (days_to_save - i * 30))
@@ -130,6 +130,12 @@ def get_time_required(savings, is_snp, is_isa, amount_per_month, value):
 
 #gets amount you need to save per month
 def get_contribution(savings, is_snp, is_isa, years_to_save, value):
+    savings = float(savings)
+    years_to_save = float(years_to_save)
+    value = float(value)
+    is_snp = bool(is_snp)
+    is_isa = bool(is_snp)
+
     if(savings >= value):
         return 0, 0, 0
     interest = snp_growth_rate if is_snp else bank_of_england_rate
@@ -142,7 +148,7 @@ def get_contribution(savings, is_snp, is_isa, years_to_save, value):
     else:
         amount_per_month, isa_amount_per_month, index_per_month = complex_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
 
-    return 0,0,0
+    return amount_per_month, isa_amount_per_month, index_per_month
 #predicts savings
 def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
     interest = snp_growth_rate if is_snp else bank_of_england_rate
@@ -152,5 +158,3 @@ def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
     else:
         final_savings = result_of_savings_complex(savings, amount_per_month, interest, years_to_save * 365)
     return final_savings
-
-print(get_contribution(1000, False, False, 1, 20000))
