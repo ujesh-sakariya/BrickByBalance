@@ -61,35 +61,38 @@
     </div>
   </div>
 
-  <div class="mortgage-features">
-    <div class="feature-item">
+    <div class="mortgage-container">
+        <div class="feature-item">
         <img src="../static/wallet.png" alt="Monthly Payments Icon" class="feature-icon" onclick="toggleDetails('details1')">
         <h3>Estimate Your Monthly Payments</h3>
-        <p id="details1" class="feature-details" style="display: none;">Enter your loan amount, interest rate, and term to get an estimate of your monthly payments, helping you budget confidently.</p>
-    </div>
+        <p id="details1" class="feature-details" style="display: none;">
+            Enter your loan amount, interest rate, and term to get an estimate of your monthly payments, helping you budget confidently.
+        </p>
+        </div>
 
-    <div class="feature-item">
+        <div class="feature-item">
         <img src="../static/payment-method.png" alt="Financing Options Icon" class="feature-icon" onclick="toggleDetails('details2')">
         <h3>Compare Different Financing Options</h3>
         <p id="details2" class="feature-details" style="display: none;">
-        Adjust variables like loan term, interest rate, and down payment to compare scenarios and find the best option for you.
+            Adjust variables like loan term, interest rate, and down payment to compare scenarios and find the best option for you.
         </p>
-    </div>
+        </div>
 
-    <div class="feature-item">
+        <div class="feature-item">
         <img src="../static/bank.png" alt="Financial Journey Icon" class="feature-icon" onclick="toggleDetails('details3')">
         <h3>Plan Your Long-Term Financial Journey</h3>
         <p id="details3" class="feature-details" style="display: none;">
-        View the total interest and repayment costs over the loan’s lifetime, helping you prepare for homeownership with long-term insights.
+            View the total interest and repayment costs over the loan’s lifetime, helping you prepare for homeownership with long-term insights.
         </p>
+        </div>
     </div>
 
-  <script>
-    function toggleDetails(id) {
-      const details = document.getElementById(id);
-      details.style.display = details.style.display === 'none' ? 'block' : 'none';
-    }
-  </script>
+    <script>
+        function toggleDetails(id) {
+          const details = document.getElementById(id);
+          details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
 </div>
 
 {% endblock %}

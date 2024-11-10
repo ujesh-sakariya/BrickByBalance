@@ -35,12 +35,14 @@ p{
 }
   
 .toolbar{
+  justify-content: space-between;
   background-color: #28033c;
   color: white;
   font-family: "Coco";
   padding: 10px;
   display: flex;
   align-items: center;
+  padding: 10px 20px;
 }
 
 .logo img{
@@ -54,9 +56,9 @@ p{
   overflow: hidden;
   background-color: #28033c;  /*Change to your desired color */
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;/*was flex end*/
   align-items: center;
-  width: 90%;  
+  width: 100%;  
   margin-right: 10px;
 }
   
@@ -66,6 +68,10 @@ p{
   text-align: center;
   padding: 16px 20px;
   text-decoration: none;
+}
+
+#logout-link{
+  margin-left: auto;
 }
   
 .navbar a:hover, .dropdown:hover .dropbtn {
@@ -192,9 +198,31 @@ p{
   margin-left: 300px;
 }
 
+.mortgage-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
 .feature-item {
   text-align: center;
+  width: 20%; 
   cursor: pointer;
+  background-color: rgba(255, 107, 1, 0.5); 
+  border-radius: 15px; 
+  padding: 20px; 
+  box-sizing: border-box; 
+  transition: all 0.3s ease;
+}
+
+.feature-item p{
+  font-size: 18px;
+  color: black;
+}
+
+.feature-item:hover {
+  background-color: rgba(255, 107, 1, 0.7); 
 }
 
 .feature-icon {
@@ -211,10 +239,9 @@ p{
 
 #mortgage-section p {
   font-size: 18px;
-  /*margin: 20px 10;  Add margin below the paragraph */
-  max-width: 800px; /* Set the maximum width of the text content */
+  max-width: 800px; 
   margin-left: 60px;
-  margin-top: -200px;
+  margin-top: -50px;
 }
 
 /*FORMS FOR LOGIN AND REGISTER PAGE*/
