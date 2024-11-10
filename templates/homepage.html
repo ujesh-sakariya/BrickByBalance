@@ -23,21 +23,74 @@
   <h1>REGISTRATION</h1>
   <p>We help aspiring homeowners build the financial confidence they need to achieve their dreams of owning a home. In this section, you can either log in if you're an existing member or sign up to join our community and gain access to personalized financial insights, tailored savings plans, and exclusive resources. Let’s get started, so you can start building your path to homeownership!</p>
   <div class="buttons-registration">
-  <a href="/sign-up" id="signup-button">SIGN UP</a>
-  <a href="/login" id="login-button">LOGIN</a>
+  <a href="./sign_up.html" id="signup-button">SIGN UP</a>
+  <a href="./login.html" id="login-button">LOGIN</a>
   </div>
+</br>
+<h1>MORTGAGE CALCULATOR</h1>
 </div>
 
-<!--Section for Mortgage Calculator-->
+<!--Section for Mortgage Calculator
 <div class="content-block" id="mortgage-section">
   <h1>MORTGAGE CALCULATOR</h1>
   <p>Our Mortgage Calculator is here to help you make informed decisions about your home loan options. Whether you're exploring your first mortgage or assessing different financing options, this tool provides a clear estimate of your monthly payments, loan terms, and interest over time.</p>
   <div class="buttons-registration">
-  <a href="/mortgageCalculator.html" id="mortgage-button">MORTGAGE CALCULATOR</a>
+  <a href="./mortgageCalculator.html" id="mortgage-button">MORTGAGE CALCULATOR</a>
   </div>
 </div>
+-->
 
 
+<!-- Section for Mortgage Calculator -->
+<div class="content-block" id="mortgage-section">
+
+    <!-- Left Side: Text Content -->
+    <div class="mortgage-text">
+      <p>Our Mortgage Calculator is here to help you make informed decisions about your home loan options. Whether you're exploring your first mortgage or assessing different financing options, this tool provides a clear estimate of your monthly payments, loan terms, and interest over time.</p> 
+      
+      <div class="buttons-registration">
+        <a href="./mortgageCalculator.html" id="mortgage-button">CALCULATE MORTGAGE</a>
+      </div>
+    </div>
+    
+    <!-- Right Side: Video Content -->
+    <div class="mortgage-gif">
+    </br>
+    </br>
+        <img src="../static/mortgage.gif" alt="Mortgage Calculator GIF" width="300" height= "auto">
+    </div>
+  </div>
+
+  <div class="mortgage-features">
+    <div class="feature-item">
+        <img src="../static/wallet.png" alt="Monthly Payments Icon" class="feature-icon" onclick="toggleDetails('details1')">
+        <h3>Estimate Your Monthly Payments</h3>
+        <p id="details1" class="feature-details" style="display: none;">Enter your loan amount, interest rate, and term to get an estimate of your monthly payments, helping you budget confidently.</p>
+    </div>
+
+    <div class="feature-item">
+        <img src="../static/payment-method.png" alt="Financing Options Icon" class="feature-icon" onclick="toggleDetails('details2')">
+        <h3>Compare Different Financing Options</h3>
+        <p id="details2" class="feature-details" style="display: none;">
+        Adjust variables like loan term, interest rate, and down payment to compare scenarios and find the best option for you.
+        </p>
+    </div>
+
+    <div class="feature-item">
+        <img src="../static/bank.png" alt="Financial Journey Icon" class="feature-icon" onclick="toggleDetails('details3')">
+        <h3>Plan Your Long-Term Financial Journey</h3>
+        <p id="details3" class="feature-details" style="display: none;">
+        View the total interest and repayment costs over the loan’s lifetime, helping you prepare for homeownership with long-term insights.
+        </p>
+    </div>
+
+  <script>
+    function toggleDetails(id) {
+      const details = document.getElementById(id);
+      details.style.display = details.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</div>
 
 {% endblock %}
 
