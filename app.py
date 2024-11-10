@@ -13,6 +13,8 @@ app.secret_key = secrets.token_hex(16)
 # get the DB
 import sqlite3
 
+from CORRECT_PREDICTION import get_time_required, get_contribution, predict_savings
+
 def getConnection():
     connection = sqlite3.connect('BrickByBalance.db')
     return connection  
@@ -133,11 +135,16 @@ def prediction():
         savings = request.get.form('savings')
         region = request.get.form('region')
         monthlyIncome = request.get.form('monthlyIncome')
-        deposit = request.get.form('deposit')
+        deposit = int(request.get.form('deposit'))
 
         # create the function to calcualte the predicted price 
         cost = predict(houseType,years,region)
-        
+
+        total = deposit /100 * cost
+
+        # get contribution function for savings 
+
+        best_plan = get_contribution(savings,True,True,years,total)
 
         query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
         connection = getConnection()
@@ -146,7 +153,7 @@ def prediction():
         cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
         connection.commit()
         removeConnection(connection)
-        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit)
+        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, best_plan = best_plan)
     else:
         return render_template('prediction.html')
     

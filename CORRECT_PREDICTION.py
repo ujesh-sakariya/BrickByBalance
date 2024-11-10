@@ -61,22 +61,30 @@ def result_of_savings_isa(savings, save_per_month, interest_rate, days_to_save):
     default_amount = savings * (daily_interest ** days_to_save)
     from_additional_saving = 0
     from_lifetime_isa = 0
-
+    index_cont = 0
+    isa_cont = 0
     number_of_additional_savings = days_to_save // 30
     if number_of_additional_savings >= 1:
         i = 1
         isa_limit = 4000
+
         while number_of_additional_savings >= i:
             from_additional_saving += save_per_month * (daily_interest ** (days_to_save - i * 30))
             if save_per_month < isa_limit:
                 isa_limit -= save_per_month
+                #
+                isa_cont += save_per_month
                 from_lifetime_isa += save_per_month * 0.25 * (daily_interest ** (days_to_save - i * 30))
             else:
                 from_lifetime_isa += isa_limit * 0.25 * (daily_interest ** (days_to_save - i * 30))
+                isa_cont += isa_limit
+                index_cont += save_per_month - isa_limit
                 isa_limit = 0
             if i % 12 == 0:
                 isa_limit = 4000
             i += 1
+        monthlyIndex = index_cont // number_of_additional_savings
+        monthlyIsa = isa_cont // number_of_additional_savings
     return default_amount + from_additional_saving + from_lifetime_isa
 
 def isa_amount_per_month_to_save(savings, interest_rate, value, days_to_save):
@@ -121,15 +129,19 @@ def get_time_required(savings, is_snp, is_isa, amount_per_month, value):
 
 #gets amount you need to save per month
 def get_contribution(savings, is_snp, is_isa, years_to_save, value):
+    if(savings >= value):
+        return 0
     interest = snp_growth_rate if is_snp else bank_of_england_rate
 
     amount_per_month = 0
+    isa_amount_per_month = 0
+    index_per_month = 0
     if is_isa:
         amount_per_month = isa_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
     else:
         amount_per_month = complex_amount_per_month_to_save(savings, interest, value, years_to_save * 365)
 
-    return amount_per_month
+    return amount_per_month, 0, 0
 
 #predicts savings
 def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
