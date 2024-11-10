@@ -1,2 +1,2 @@
 Regions:
-England,Wales,Inner London,Outer London,London,East of England,North West,South East,West Midlands Region,South West,East Midlands,Yorkshire and The Humber,North East,Scotland
+Wales,Inner London,Outer London,London,East of England,North West,South East,West Midlands Region,South West,East Midlands,Yorkshire and The Humber,North East,Scotland
