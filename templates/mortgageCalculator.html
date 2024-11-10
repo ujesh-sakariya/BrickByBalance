@@ -31,7 +31,13 @@ Mortgage Calculator
             <label for="interestRate">Annual Interest Rate (%):</label>
             <input type="number" id="interestRate" name="interestRate" step="0.01" required placeholder="Enter interest rate">
 
+            <label for="monthlySavings">Monthly Savings (£):</label>
+            <input type="number" id="monthlySavings" name="monthlySavings" step="0.01" required placeholder="Enter your monthly savings">        
+
             <button type="button" onclick="calculateMortgage()">Calculate My Mortgage</button>
         </form>
+
+        <div id="mortgageResult"></div>
+        <canvas id="mortgageChart" width="400" height="200"></canvas>
     </div>
 {% endblock %}
