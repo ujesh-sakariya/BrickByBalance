@@ -148,7 +148,7 @@ def prediction():
     
 @app.route('/History')
 def history():
-    # get the history for the user 
+    # get the history for the user queries
     id = session['id']
     query = ('SELECT houseType, years, savings, region, monthlyIncome, deposit FROM Houses WHERE account_id = ?')
     connection = getConnection()
