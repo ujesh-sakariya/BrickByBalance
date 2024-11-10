@@ -98,4 +98,9 @@ def register():
     else:
         # GET METHOD
         return render_template('register.html')
-
+    
+# clear the session and takeuser back the homepage
+@app.route("/logout")
+def logout():
+    session.clear()
+    return render_template('homepage.html')
