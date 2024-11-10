@@ -16,7 +16,7 @@ import sqlite3
 from CORRECT_PREDICTION import get_time_required, get_contribution, predict_savings
 
 def getConnection():
-    connection = sqlite3.connect('BrickByBalance.db')
+    connection = sqlite3.connect('BbyB.db')
     return connection  
 
 def removeConnection(connection):
@@ -84,7 +84,7 @@ def register():
         username = request.form.get('username')      
         password = request.form.get('password')
         email = request.form.get('email')
-        data = [username]
+        data = username
 
         #check if an account exists with the given username 
         query = "SELECT username FROM accounts WHERE username = ?"
@@ -132,7 +132,7 @@ def prediction():
     if request.method == 'POST':
         houseType = request.form.get('houseType')
         years = int(request.form.get('years'))
-        savings = request.form.get('savings')
+        savings = int(request.form.get('savings'))
         region = request.form.get('region')
         monthlyIncome = request.form.get('monthlyIncome')
         deposit = int(request.form.get('deposit'))
@@ -140,11 +140,11 @@ def prediction():
         # create the function to calcualte the predicted price 
         cost = predict(houseType,years,region)
 
-        total = deposit /100 * cost
+        total = float(deposit /100 * cost)
 
         # get contribution function for savings 
 
-        total,isa,snp = get_contribution(savings,True,True,years,total)
+        overall,isa,snp = get_contribution(savings,True,True,years,total)
 
         query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
         connection = getConnection()
@@ -153,7 +153,7 @@ def prediction():
         cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
         connection.commit()
         removeConnection(connection)
-        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, total = total, isa = isa,snp = snp)
+        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, overall = overall, isa = isa,snp = snp)
     else:
         return render_template('prediction.html')
     
