@@ -15,16 +15,16 @@ FLAT_PATH = PATH.joinpath("serialized_model_Flat_Average_Price.json")
 '''
 Handles the prediction of a house price given a house type and time scale
 '''
-def predict(house_type: str, year_range: int,region_in:str = ''):
+def predict(house_type: str, year_range: int,region_in:str = '') -> float:
     '''Predicts the average value of a given house type at a given point in the future'''
 
-    if house_type == "Semi":
+    if house_type.lower() == "semi-detached":
         model_path = str(SEMI_PATH)
-    elif house_type == "Det":
+    elif house_type.lower() == "detached":
         model_path = str(DET_PATH)
-    elif house_type == "Terr":
+    elif house_type.lower() == "terrace":
         model_path = str(TERR_PATH)
-    elif house_type == "Flat":
+    elif house_type.lower() == "flat":
         model_path = str(FLAT_PATH)
     else:
         print("Invalid house type specified.")
@@ -66,11 +66,7 @@ def predict(house_type: str, year_range: int,region_in:str = ''):
     # Predict using the model
     forecast = model.predict(future_df)
 
-    # Print the results
-    print(f"Predicted price range for {future_date[0].date()}:")
-    print(f"Median (yhat): {forecast['yhat'].iloc[0]:.2f}")
-    print(f"Lower bound (yhat_lower): {forecast['yhat_lower'].iloc[0]:.2f}")
-    print(f"Upper bound (yhat_upper): {forecast['yhat_upper'].iloc[0]:.2f}")
+    return forecast['yhat'].iloc[0]
 
 if __name__ == '__main__':
-    predict('Semi', 10)
+    print(predict('semi-detached', 10,'London'))
