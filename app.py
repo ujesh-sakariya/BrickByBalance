@@ -105,4 +105,14 @@ def logout():
     session.clear()
     return render_template('homepage.html')
 
+@app.route('/prediction',methods=['GET','POST'])
+def prediction():
+    if request.method == 'POST':
+        houseType = request.form.get('houseType')
+        years = request.get.form('years')
+    else:
+        return render_template('prediction.html')
 
+
+
+    

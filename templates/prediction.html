@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %} 
+Prediction  
+{% endblock %}
+
+{% block main %}
+
+<form action="/prediction" method="POST">
+  <h1 class="login-title">PREDICTION</h1>
+  <div class="form-group">
+    <label for="username">HOUSE TYPE</label>
+    <select id="houseTyoe" name="houseType">
+        <option value="semi-detached">Semi-detached house</option>
+        <option value="detached">Detached house</option>
+        <option value="terrace">Terrace house</option>
+        <option value="flat">Flat</option>
+    </select>
+  </div>
+</div>
+<div class="form-group">
+<label for="years">NUMBER OF YEARS UNTILL THE DEPOSIT IS PUT DOWN</label>
+<input
+    type="number"
+    class="form-control"
+    id="years"
+    name="years"
+    placeholder="Years"
+    />
+</div>
+<div class="form-group">
+    <label for="deposit">ENTER WHAT % OF THE DEPOSIT YOU WOULD LIKE TO PUT DOWN</label>
+    <select id="deposit" name="deposit">
+    <option value="ten">10%</option>
+    <option value="fifthteen">15%</option>
+    <option value="twenty">20%</option>
+    </select>
+    </label>
+</div>
+<div class="form-group">
+    <label for="monthlyIncome">ENTER YOUR MONTHLY INCOME</label>
+    <input
+        type="number"
+        class="form-control"
+        id="income"
+        name="income"
+        placeholder="income"
+        />
+</div>
+<div class="form-group">
+    <label for="saving">ENTER HOW MUCH SAVINGS YOU CURRENTLY HAVE</label>
+    <input
+        type="text"
+        class="form-control"
+        id="savings"
+        name="savings"
+        placeholder="savings"
+        />
+</div>
+
+
+
+  <br />
+  <button type="submit" class="btn btn-primary">SUBMIT</button>
+</form>
+
+
+{% endblock %}
+
+
