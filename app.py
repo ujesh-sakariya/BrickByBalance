@@ -13,7 +13,7 @@ app.secret_key = secrets.token_hex(16)
 # get the DB
 import sqlite3
 
-from CORRECT_PREDICTION import get_time_required, get_contribution, predict_savings
+from prediction import get_contribution
 
 def getConnection():
     connection = sqlite3.connect('BbyB.db')
@@ -144,7 +144,11 @@ def prediction():
 
         # get contribution function for savings 
 
-        overall,isa,snp = get_contribution(savings,True,True,years,total)
+        isa,snp = get_contribution(savings=savings,
+                                   years_to_save=years,
+                                   deposit=total,
+                                   value= cost)
+                                     
 
         query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
         connection = getConnection()
