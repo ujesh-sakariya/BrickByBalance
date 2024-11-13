@@ -130,10 +130,11 @@ def get_time_required(savings, is_snp, is_isa, amount_per_month, value):
 
 #gets amount you need to save per month
 def get_contribution(savings, is_snp, is_isa, years_to_save, value):
-    savings = float(savings)
-    years_to_save = float(years_to_save)
-    value = float(value)
-    is_snp = bool(is_snp)
+    '''Determines how monthly savings should be split between LISA and SP500'''
+    savings = float(savings) #8k
+    years_to_save = float(years_to_save) #14
+    value = float(value) #480407
+    is_snp = bool(is_snp) 
     is_isa = bool(is_snp)
 
     if(savings >= value):
