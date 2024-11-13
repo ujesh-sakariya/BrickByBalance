@@ -87,7 +87,7 @@ def result_of_savings_isa(savings, save_per_month, interest_rate, days_to_save):
     return default_amount + from_additional_saving + from_lifetime_isa, monthlyIsa, monthlyIndex
 
 def isa_amount_per_month_to_save(savings, interest_rate, value, days_to_save):
-    if value >= 450000:
+    if value <= 450000:
         return complex_amount_per_month_to_save(savings, interest_rate, value, days_to_save)
     predicted_saving_amount = 0
     planned_saving_per_month = 0
@@ -99,7 +99,7 @@ def isa_amount_per_month_to_save(savings, interest_rate, value, days_to_save):
     return planned_saving_per_month if planned_saving_per_month < 1E7 else False, monthlyIsaCont, monthlyIndexCont
 
 def isa_time_to_save(savings, save_per_month, interest_rate, value):
-    if value >= 450000:
+    if value <= 450000:
         return complex_time_to_save(savings, save_per_month, interest_rate, value)
     predicted_saving_amount = 0
     planned_days = 0
@@ -151,6 +151,16 @@ def get_contribution(savings, is_snp, is_isa, years_to_save, value):
 
     return amount_per_month, isa_amount_per_month, index_per_month
 #predicts savings
+# def monthly_contribution(savings:float, years_to_save:float, house_value:float,deposit:float):
+#     '''Determines monthly savings contribution'''
+
+#     lisa_elligible = house_value < 450000
+#     monthly = deposit/years_to_save
+#     if not lisa_elligible:
+        
+        
+
+
 def predict_savings(savings, is_snp, is_isa, amount_per_month, years_to_save):
     interest = snp_growth_rate if is_snp else bank_of_england_rate
 
