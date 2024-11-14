@@ -127,8 +127,9 @@ def logout():
     session.clear()
     return render_template('homepage.html')
 
-@app.route('/prediction',methods=['GET','POST'])
+@app.route("/prediction",methods=['GET','POST'])
 def prediction():
+    print('cal')
     if session.get('name'):
         if request.method == 'POST':
             houseType = request.form.get('houseType')
@@ -139,9 +140,13 @@ def prediction():
             deposit = int(request.form.get('deposit'))
 
             # create the function to calcualte the predicted price 
-            cost = predict(houseType,years,region)
+            cost = int(predict(houseType,years,region))
 
-            total = float(deposit /100 * cost)
+            # total deposit 
+            total = int(deposit /100 * cost)
+
+            # how much left you hasve 
+            left = int(total - savings)
 
             # get contribution function for savings 
 
@@ -149,7 +154,7 @@ def prediction():
                                     years_to_save=years,
                                     deposit=total,
                                     value= cost)
-                                        
+             
 
             query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
             connection = getConnection()
@@ -158,7 +163,7 @@ def prediction():
             cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
             connection.commit()
             removeConnection(connection)
-            return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, overall = overall, isa = isa,snp = snp)
+            return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, isa = int(isa),snp = int(snp), total = total, left = left, cost = cost )
         else:
             return render_template('prediction.html')
     else:
