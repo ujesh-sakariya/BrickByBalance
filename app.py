@@ -129,37 +129,40 @@ def logout():
 
 @app.route('/prediction',methods=['GET','POST'])
 def prediction():
-    if request.method == 'POST':
-        houseType = request.form.get('houseType')
-        years = int(request.form.get('years'))
-        savings = int(request.form.get('savings'))
-        region = request.form.get('region')
-        monthlyIncome = request.form.get('monthlyIncome')
-        deposit = int(request.form.get('deposit'))
+    if session.get('name'):
+        if request.method == 'POST':
+            houseType = request.form.get('houseType')
+            years = int(request.form.get('years'))
+            savings = int(request.form.get('savings'))
+            region = request.form.get('region')
+            monthlyIncome = request.form.get('monthlyIncome')
+            deposit = int(request.form.get('deposit'))
 
-        # create the function to calcualte the predicted price 
-        cost = predict(houseType,years,region)
+            # create the function to calcualte the predicted price 
+            cost = predict(houseType,years,region)
 
-        total = float(deposit /100 * cost)
+            total = float(deposit /100 * cost)
 
-        # get contribution function for savings 
+            # get contribution function for savings 
 
-        isa,snp = get_contribution(savings=savings,
-                                   years_to_save=years,
-                                   deposit=total,
-                                   value= cost)
-                                     
+            isa,snp = get_contribution(savings=savings,
+                                    years_to_save=years,
+                                    deposit=total,
+                                    value= cost)
+                                        
 
-        query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
-        connection = getConnection()
-        cursor = connection.cursor()
-        account_id = session['id']
-        cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
-        connection.commit()
-        removeConnection(connection)
-        return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, overall = overall, isa = isa,snp = snp)
+            query = 'INSERT INTO Houses (houseType, years, region, monthlyIncome, deposit, savings, account_id) VALUES (?,?,?,?,?,?,?)'
+            connection = getConnection()
+            cursor = connection.cursor()
+            account_id = session['id']
+            cursor.execute(query,(houseType,years,savings,region,monthlyIncome,deposit,account_id))
+            connection.commit()
+            removeConnection(connection)
+            return render_template('results.html',houseType = houseType, years = years, savings = savings, region = region, monthlyIncome = monthlyIncome, deposit = deposit, overall = overall, isa = isa,snp = snp)
+        else:
+            return render_template('prediction.html')
     else:
-        return render_template('prediction.html')
+        return render_template('homepage.html')
     
 @app.route('/History')
 def history():
